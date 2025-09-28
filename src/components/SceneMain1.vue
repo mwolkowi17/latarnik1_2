@@ -3,120 +3,49 @@ import Podpowiedz from './Podpowiedz.vue';
 import PrawidlowaOdpowiedz from './PrawidlowaOdpowiedz.vue';
 import ZlaOdpowiedz from './ZlaOdpowiedz.vue';
 import { useSceneStore } from '../stores/sceneStore';
-import { useMainCompStore } from '../stores/mainCompStore'
 import { useTimerStore } from '../stores/timerStore';
-import { onMounted, nextTick } from 'vue';
+import { onMounted } from 'vue';
 
 const storeSceneMain = useSceneStore();
-const storeMainComp = useMainCompStore();
 const storeTime = useTimerStore();
 
 
 onMounted(() => {
     storeSceneMain.addQuestionLevel1()
-    //startTimer();
+    storeTime.startTimerValue()
+   // storeTime.updateTimerDispay()
     storeTime.startTimer()
 })
-
-
 
 //obsługa eventów podpiętych do buttonów
 async function odpowiedz1Click() {
     console.log('odp1')
-    storeSceneMain.sprawdzOdpowiedz(1)
-    await nextTick()
-    if (storeSceneMain.ifPrawidlowaOdpowiedz === true) {
-        setTimeout(() => {
-            storeSceneMain.addQuestionLevel1()
-            storeSceneMain.ifPrawidlowaOdpowiedz = false
-            storeSceneMain.ramkaPunktyMove()
-            if (storeSceneMain.licznikPunktacja === 4) {
-                storeMainComp.ifMain1 = false
-                storeMainComp.ifWinSilver = true
-            }
-        }, 3000)
-    } else {
-        setTimeout(() => {
-            storeSceneMain.ifZlaOdpowiedz = false
-            storeMainComp.ifMain1 = false
-            storeMainComp.ifPrzegranaSilver = true
-        }, 3000)
-    }
-
+    storeSceneMain.Odpowiedz1(1)
 }
 
 async function odpowiedz2Click() {
     console.log('odp2')
-    storeSceneMain.sprawdzOdpowiedz(2)
-    await nextTick()
-    if (storeSceneMain.ifPrawidlowaOdpowiedz === true) {
-        setTimeout(() => {
-            storeSceneMain.addQuestionLevel1()
-            storeSceneMain.ifPrawidlowaOdpowiedz = false
-            storeSceneMain.ramkaPunktyMove()
-            if (storeSceneMain.licznikPunktacja === 4) {
-                storeMainComp.ifMain1 = false
-                storeMainComp.ifWinSilver = true
-            }
-        }, 3000)
-    }
-    else {
-        setTimeout(() => {
-            storeSceneMain.ifZlaOdpowiedz = false
-            storeMainComp.ifMain1 = false
-            storeMainComp.ifPrzegranaSilver = true
-        }, 3000)
-    }
-
+    storeSceneMain.Odpowiedz1(2)
 }
 
 async function odpowiedz3Click() {
     console.log('odp3')
-    storeSceneMain.sprawdzOdpowiedz(3)
-    await nextTick()
-    if (storeSceneMain.ifPrawidlowaOdpowiedz === true) {
-        setTimeout(() => {
-            storeSceneMain.addQuestionLevel1()
-            storeSceneMain.ifPrawidlowaOdpowiedz = false
-            storeSceneMain.ramkaPunktyMove()
-            if (storeSceneMain.licznikPunktacja === 4) {
-                storeMainComp.ifMain1 = false
-                storeMainComp.ifWinSilver = true
-            }
-        }, 3000)
-    }
-    else {
-        setTimeout(() => {
-            storeSceneMain.ifZlaOdpowiedz = false
-            storeMainComp.ifMain1 = false
-            storeMainComp.ifPrzegranaSilver = true
-        }, 3000)
-    }
+    storeSceneMain.Odpowiedz1(3)
 }
 
 async function odpowiedz4Click() {
     console.log('odp4')
-    storeSceneMain.sprawdzOdpowiedz(4)
-    await nextTick()
-    if (storeSceneMain.ifPrawidlowaOdpowiedz === true) {
-        setTimeout(() => {
-            storeSceneMain.addQuestionLevel1()
-            storeSceneMain.ifPrawidlowaOdpowiedz = false
-            storeSceneMain.ramkaPunktyMove()
-            if (storeSceneMain.licznikPunktacja === 4) {
-                storeMainComp.ifMain1 = false
-                storeMainComp.ifWinSilver = true
-            }
-        }, 3000)
-    }
-    else {
-        setTimeout(() => {
-            storeSceneMain.ifZlaOdpowiedz = false
-            storeMainComp.ifMain1 = false
-            storeMainComp.ifPrzegranaSilver = true
-        }, 3000)
-    }
+    storeSceneMain.Odpowiedz1(3)
 }
+
+function PauseTimer(){
+    storeTime.isPaused=true
+}
+
+function PlayTimer(){
+    storeTime.isPaused=false
+}
+
 
 
 </script>
@@ -166,14 +95,11 @@ async function odpowiedz4Click() {
 
         <div class="container-punktacja">
             <div class="ramka-punktacja" :style="{ top: storeSceneMain.ramkaPunktacjaWysokosc + 'px' }"></div>
-            <!--<div class="licznik-czasu">
-                00:20
-            </div>-->
             <div class="licznik-czasu">
                 {{ storeTime.formattedTime }}
             </div>
-            <button class="my-button button-pauza">Pauza</button>
-            <button class="my-button button-kontynuj">Kontynuj</button>
+            <button class="my-button button-pauza" @click="PauseTimer">Pauza</button>
+            <button class="my-button button-kontynuj" @click="PlayTimer">Kontynuj</button>
             <div class="container-points">
                 <div class="punktacja-row">
                     <p class="napis-punktacja">10</p>

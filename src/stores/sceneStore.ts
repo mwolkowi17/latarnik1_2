@@ -3,8 +3,12 @@ import { ref, nextTick } from "vue";
 import gameData from "../lib/pytania.json";
 import pointsPosition from "../lib/pozycjaRamki.json";
 import { metodyPomocnicze } from "../lib/metody-pomocnicze";
+import { useMainCompStore } from "../stores/mainCompStore";
 
 export const useSceneStore = defineStore("storeScene1", () => {
+  //dostęp do store'a main Comp
+  const storeSceneMain = useMainCompStore();
+
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
   const ifPrawidlowaOdpowiedz = ref(false);
@@ -28,6 +32,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
 
   let nrKolejki = 0;
 
+  //metoda dodajaca losowo pytania
   async function addQuestionLevel1() {
     //const kolekcjaPytan = gameData.poziom1;
     let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki;
@@ -61,6 +66,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
     }
   }
 
+  //sprawdzanie odpoiwedzi
   function sprawdzOdpowiedz(nrWybranegoPytania: number) {
     console.log("wybrana odpowiedz:" + nrWybranegoPytania);
     if (
@@ -83,11 +89,36 @@ export const useSceneStore = defineStore("storeScene1", () => {
     }
   }
 
+  //obsługa punktacji
   async function ramkaPunktyMove() {
     licznikPunktacja.value = licznikPunktacja.value + 1;
     await nextTick();
     ramkaPunktacjaWysokosc.value =
       pointsPosition.pozycjaRamki[licznikPunktacja.value];
+  }
+
+  //obsługa odpowiedzi
+
+  async function Odpowiedz1(buttonNumber: number) {
+    sprawdzOdpowiedz(buttonNumber);
+    await nextTick();
+    if (ifPrawidlowaOdpowiedz.value === true) {
+      setTimeout(() => {
+        addQuestionLevel1();
+        ifPrawidlowaOdpowiedz.value = false;
+        ramkaPunktyMove();
+        if (licznikPunktacja.value === 4) {
+          storeSceneMain.ifMain1 = false;
+          storeSceneMain.ifWinSilver = true;
+        }
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        ifZlaOdpowiedz.value = false;
+        storeSceneMain.ifMain1 = false;
+        storeSceneMain.ifPrzegranaSilver = true;
+      }, 3000);
+    }
   }
 
   return {
@@ -106,5 +137,6 @@ export const useSceneStore = defineStore("storeScene1", () => {
     addQuestionLevel1,
     sprawdzOdpowiedz,
     ramkaPunktyMove,
+    Odpowiedz1,
   };
 });
