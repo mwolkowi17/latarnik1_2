@@ -1,0 +1,196 @@
+{
+  "poziom1": [
+    {
+      "id": "1",
+      "pytanie": "Gdzie rozgrywa się akcja noweli „Latarnik”?",
+      "odpowiedz1": "Buenos Aires",
+      "odpowiedz2": "Aspinwall",
+      "odpowiedz3": "Lwów",
+      "odpowiedz4": "Nowy Jork",
+      "prawidlowa_odpowiedz": "2"
+    },
+    {
+      "id": "2",
+      "pytanie": "Jak nazywa się główny bohater noweli?",
+      "odpowiedz1": "Skawiński",
+      "odpowiedz2": "Sienkiewicz",
+      "odpowiedz3": "Santiago",
+      "odpowiedz4": "Starski",
+      "prawidlowa_odpowiedz": "1"
+    },
+    {
+      "id": "3",
+      "pytanie": "Kim był Skawiński w Aspinwall?",
+      "odpowiedz1": "lekarzem",
+      "odpowiedz2": "latarnikiem",
+      "odpowiedz3": "księgarzem",
+      "odpowiedz4": "żołnierzem",
+      "prawidlowa_odpowiedz": "2"
+    },
+    {
+      "id": "4",
+      "pytanie": "Z jakiego kraju pochodzi Skawiński?",
+      "odpowiedz1": "Węgry",
+      "odpowiedz2": "Brazylia",
+      "odpowiedz3": "Polska",
+      "odpowiedz4": "Francja",
+      "prawidlowa_odpowiedz": "3"
+    },
+    {
+      "id": "5",
+      "pytanie": "Jaki utwór wzbudził silne emocje w bohaterze?",
+      "odpowiedz1": "„Mitologia”",
+      "odpowiedz2": "„Dziady”",
+      "odpowiedz3": "„Trylogia”",
+      "odpowiedz4": "„Pan Tadeusz”",
+      "prawidlowa_odpowiedz": "4"
+    },
+    {
+      "id": "6",
+      "pytanie": "Gdzie walczył Skawiński?",
+      "odpowiedz1": "w Hiszpanii, we Francji, na Węgrzech i w Stanach Zjednoczonych",
+      "odpowiedz2": "w Hiszpanii, w Niemczech, na Węgrzech i w Stanach Zjednoczonych",
+      "odpowiedz3": "w Holandii, we Francji, na Węgrzech i w Anglii",
+      "odpowiedz4": "w Hiszpanii, we Włoszech, na Węgrzech i w Stanach Zjednoczonych",
+      "prawidlowa_odpowiedz": "1"
+    },
+    {
+      "id": "7",
+      "pytanie": "„Latarnik” to:",
+      "odpowiedz1": "powieść",
+      "odpowiedz2": "bajka",
+      "odpowiedz3": "nowela",
+      "odpowiedz4": "dramat",
+      "prawidlowa_odpowiedz": "3"
+    },
+    {
+      "id": "8",
+      "pytanie": "Jak długo Skawiński był latarnikiem, zanim stracił pracę?",
+      "odpowiedz1": "dwa dni",
+      "odpowiedz2": "prawie rok",
+      "odpowiedz3": "kilka lat",
+      "odpowiedz4": "miesiąc",
+      "prawidlowa_odpowiedz": "2"
+    },
+    {
+      "id": "9",
+      "pytanie": "Jakie codzienne obowiązki miał Skawiński?",
+      "odpowiedz1": "sprzątał latarnię morską",
+      "odpowiedz2": "zapalał i gasił latarnię",
+      "odpowiedz3": "gotował obiad dla innych latarników",
+      "odpowiedz4": "nie musiał nic robić",
+      "prawidlowa_odpowiedz": "2"
+    },
+    {
+      "id": "10",
+      "pytanie": "Ile lat miał Skawiński, gdy został latarnikiem?",
+      "odpowiedz1": "około 40",
+      "odpowiedz2": "około 50",
+      "odpowiedz3": "około 60",
+      "odpowiedz4": "około 70",
+      "prawidlowa_odpowiedz": "4"
+    }
+  ],
+  "poziom2": [
+    {
+      "id": "1",
+      "pytanie": "Dlaczego Skawiński nie zapalił latarni?",
+      "odpowiedz1": "zaspał przez burzę",
+      "odpowiedz2": "zachorował i miał gorączkę",
+      "odpowiedz3": "zaczytał się w „Panu Tadeuszu”",
+      "odpowiedz4": "za długo rozmawiał z Johnsem",
+      "prawidlowa_odpowiedz": "3",
+      "podpowiedz": "Co otrzymał w paczce z Nowego Jorku?"
+    },
+    {
+      "id": "2",
+      "pytanie": "Co symbolizuje latarnia w noweli?",
+      "odpowiedz1": "pracę i obowiązek",
+      "odpowiedz2": "samotność i refleksję",
+      "odpowiedz3": "nadzieję i sens życia",
+      "odpowiedz4": "wszystkie odpowiedzi są poprawne",
+      "prawidlowa_odpowiedz": "4",
+      "podpowiedz": "Latarnia ma wiele znaczeń."
+    },
+    {
+      "id": "3",
+      "pytanie": "Skąd przyszła paczka z książką „Pan Tadeusz”?",
+      "odpowiedz1": "z Nowego Jorku",
+      "odpowiedz2": "z Warszawy",
+      "odpowiedz3": "z Paryża",
+      "odpowiedz4": "z Aspinwa",
+      "prawidlowa_odpowiedz": "1",
+      "podpowiedz": "To miasto w Ameryce."
+    },
+    {
+      "id": "4",
+      "pytanie": "Dlaczego Skawiński tak często zmieniał miejsce swojego pobytu?",
+      "odpowiedz1": "szukał lepszych zarobków",
+      "odpowiedz2": "nie mógł znaleźć swojego miejsca na świecie",
+      "odpowiedz3": "uwielbiał podróżować",
+      "odpowiedz4": "interesowały go różne kultury i języki",
+      "prawidlowa_odpowiedz": "2",
+      "podpowiedz": "Cały czas szukał spokoju i bezpieczeństwa."
+    },
+    {
+      "id": "5",
+      "pytanie": "Jakie kryteria musiał spełnić kandydat na latarnika?",
+      "odpowiedz1": "mieć doświadczenie wojskowe",
+      "odpowiedz2": "być obywatelem USA",
+      "odpowiedz3": "umieć czytać i pisać",
+      "odpowiedz4": "być samotnym i zdyscyplinowanym",
+      "prawidlowa_odpowiedz": "4",
+      "podpowiedz": "Powinien lubić porządek i nie mieć rodziny."
+    },
+    {
+      "id": "6",
+      "pytanie": "Dlaczego utrata pracy była dla Skawińskiego bolesna?",
+      "odpowiedz1": "stracił dom",
+      "odpowiedz2": "to była jego ostatnia nadzieja na spokój",
+      "odpowiedz3": "nie miał już pieniędzy",
+      "odpowiedz4": "bał się powrotu do Europy",
+      "prawidlowa_odpowiedz": "2",
+      "podpowiedz": "Skawiński szukał cichego miejsca, gdzie mógłby odpocząć."
+    },
+    {
+      "id": "7",
+      "pytanie": "Jak kończy się nowela „Latarnik”?",
+      "odpowiedz1": "Skawiński zostaje bohaterem",
+      "odpowiedz2": "Skawiński umiera w latarni",
+      "odpowiedz3": "Skawiński opuszcza Aspinwall",
+      "odpowiedz4": "Skawiński wraca do Polski",
+      "prawidlowa_odpowiedz": "3",
+      "podpowiedz": "Skawiński znów rusza w podróż."
+    },
+    {
+      "id": "8",
+      "pytanie": "Jakim człowiekiem był Skawiński?",
+      "odpowiedz1": "egoistycznym",
+      "odpowiedz2": "sumiennym",
+      "odpowiedz3": "agresywnym",
+      "odpowiedz4": "niecierpliwym",
+      "prawidlowa_odpowiedz": "2",
+      "podpowiedz": "Był rzetelny i obowiązkowy."
+    },
+    {
+      "id": "9",
+      "pytanie": "Co się stało, gdy Skawiński nie zapalił latarni?",
+      "odpowiedz1": "wybuchł pożar w porcie",
+      "odpowiedz2": "statek uderzył w latarnię",
+      "odpowiedz3": "Skawiński stracił pracę",
+      "odpowiedz4": "Skawiński trafił do aresztu",
+      "prawidlowa_odpowiedz": "3",
+      "podpowiedz": "Skawiński nie mógł już dłużej pracować w latarni."
+    },
+    {
+      "id": "10",
+      "pytanie": "Jaki motyw literacki dominuje w noweli „Latarnik”?",
+      "odpowiedz1": "motyw miłości",
+      "odpowiedz2": "motyw tańca",
+      "odpowiedz3": "motyw tęsknoty za ojczyzną",
+      "odpowiedz4": "motyw snu",
+      "prawidlowa_odpowiedz": "3",
+      "podpowiedz": "Skawińskiemu brakowało Polski."
+    }
+  ]
+}

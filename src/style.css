@@ -1,0 +1,32 @@
+body {
+  background-color: gray;
+  margin: 0px;
+  padding: 0px;
+
+  /* height: 1080px;
+  width: 1920px; */
+}
+
+html {
+  overflow: hidden;
+}
+
+.my-button {
+  transition: 0.2s ease-out;
+}
+
+.my-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
