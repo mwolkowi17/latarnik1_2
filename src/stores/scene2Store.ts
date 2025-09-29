@@ -6,7 +6,7 @@ import { metodyPomocnicze } from "../lib/metody-pomocnicze";
 import { useMainCompStore } from "../stores/mainCompStore";
 import { useTimerStore } from "./timerStore";
 
-export const useSceneStore = defineStore("storeScene1", () => {
+export const useScene2Store = defineStore("storeScene2", () => {
   //dostęp do store'ów
   const storeSceneMain = useMainCompStore();
   const timerStore = useTimerStore();
@@ -15,19 +15,21 @@ export const useSceneStore = defineStore("storeScene1", () => {
   const ifWymien = ref(true);
   const ifFifty = ref(true);
   const ifSeventy = ref(true);
+  const ifButtonPodpowiedz = ref(true);
+
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
   const ifPrawidlowaOdpowiedz = ref(false);
   const ifZlaOdpowiedz = ref(false);
 
   //położenie ramki punktacji
-  const ramkaPunktacjaWysokosc = ref(pointsPosition.pozycjaRamki[0]);
+  const ramkaPunktacjaWysokosc = ref(pointsPosition.pozycjaRamki[5]);
 
   //liczik punktacji (sterownie ramką punktacji)
-  const licznikPunktacja = ref(0);
+  const licznikPunktacja = ref(5);
 
   // właściwości dot pytań
-  const kolekcjaPytan = ref(gameData.poziom1);
+  const kolekcjaPytan = ref(gameData.poziom2);
   const pytanie = ref("pytanie");
   const odpowiedz1 = ref("odpowiedz1");
   const odpowiedz2 = ref("odpowiedz2");
@@ -68,7 +70,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
     console.log("oczekiwana odpowiedz:" + nrOdpowiedziDobrej.value);
 
     if (nrKolejki === 5) {
-      console.log("koniec etapu1");
+      console.log("koniec etapu2");
     }
   }
 
@@ -115,17 +117,17 @@ export const useSceneStore = defineStore("storeScene1", () => {
         ramkaPunktyMove();
         timerStore.isPaused = false;
         timerStore.timeScene1Local = 20;
-        if (licznikPunktacja.value === 4) {
+        if (licznikPunktacja.value === 9) {
           timerStore.isPaused = true;
-          storeSceneMain.ifMain1 = false;
-          storeSceneMain.ifWinSilver = true;
+          storeSceneMain.ifMain2 = false;
+          storeSceneMain.ifWinGold = true;
         }
       }, 3000);
     } else {
       setTimeout(() => {
         ifZlaOdpowiedz.value = false;
-        storeSceneMain.ifMain1 = false;
-        storeSceneMain.ifPrzegranaSilver = true;
+        storeSceneMain.ifMain2 = false;
+        storeSceneMain.ifPrzegranaGold = true;
       }, 3000);
     }
   }
@@ -135,8 +137,9 @@ export const useSceneStore = defineStore("storeScene1", () => {
     ifPrawidlowaOdpowiedz,
     ifZlaOdpowiedz,
     ifWymien,
-    ifFifty,
     ifSeventy,
+    ifFifty,
+    ifButtonPodpowiedz,
     ramkaPunktacjaWysokosc,
     pytanie,
     odpowiedz1,

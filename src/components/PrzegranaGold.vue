@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import {useMainCompStore} from '../stores/mainCompStore'
 
+const storeMainComp = useMainCompStore();
+
+function jeszczeRaz(){
+    storeMainComp.ifPrzegranaSilver=false
+    storeMainComp.ifMain2=true
+}
 </script>
 
 <template>
@@ -12,7 +19,7 @@
             <p class="brawo">Przegrana.</p>
            
             <div class="button-row">
-                <button class="button-win my-button">
+                <button class="button-win my-button" @click="jeszczeRaz">
                     <p class="button-text">Zagraj jeszcze raz</p>
                     <p class="button-text">-zacznij od poziomu trudnego</p>
                 </button>

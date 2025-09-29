@@ -1,5 +1,17 @@
 <script setup lang="ts">
+import { useMainCompStore } from '../stores/mainCompStore';
 
+  const storeMainComp = useMainCompStore();
+
+  function ZagrajJeszcze(){
+    storeMainComp.ifPrzegranaGold=false
+    storeMainComp.ifMain1=true
+  }
+
+  function ZakończGre(){
+    storeMainComp.ifPrzegranaGold=false
+    storeMainComp.ifInstruction=true
+  }
 </script>
 
 <template>
@@ -12,10 +24,10 @@
             <p class="text text-nagroda">Nagroda – złoty puchar.</p>
             <p class="text">Poziom trudny - ukończony!</p>
             <div class="button-row">
-                <button class="my-button button-win">
+                <button class="my-button button-win" @click="ZagrajJeszcze">
                     Zagraj jeszcze raz
                 </button>
-                <button class="my-button button-win">
+                <button class="my-button button-win" @click="ZakończGre">
                     Zakończ grę
                 </button>
             </div>
@@ -102,6 +114,6 @@
     border-radius: 39px;
     background-color: #093343;
     color: white;
-    position: absolute;
+    position: relative;
 }
 </style>

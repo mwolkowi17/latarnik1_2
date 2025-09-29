@@ -1,4 +1,18 @@
 <script setup lang="ts">
+import { useMainCompStore } from '../stores/mainCompStore';
+
+  const storeMainComp = useMainCompStore();
+
+  function GrajJeszczeRaz(){
+    storeMainComp.ifWinSilver=false
+    storeMainComp.ifMain1=true
+  }
+
+  function GrajDalej(){
+    storeMainComp.ifWinSilver=false
+    storeMainComp.ifMain1=false
+    storeMainComp.ifMain2=true
+  }
 
 </script>
 
@@ -12,10 +26,10 @@
             <p class="text">Poziom łatwy - ukończony!.</p>
             <p class="text">Przejdź do następnego poziomu.</p>
             <div class="button-row">
-                <button class="my-button button-win">
+                <button class="my-button button-win" @click="GrajJeszczeRaz">
                     Zagraj jeszcze raz
                 </button>
-                <button class="my-button button-win">
+                <button class="my-button button-win" @click="GrajDalej">
                     Graj dalej
                 </button>
             </div>
@@ -98,6 +112,6 @@
     border-radius: 39px;
     background-color: #093343;
     color: white;
-    position: absolute;
+    position: relative;
 }
 </style>

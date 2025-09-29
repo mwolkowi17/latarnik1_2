@@ -2,26 +2,27 @@
 import Podpowiedz from './Podpowiedz.vue';
 import PrawidlowaOdpowiedz from './PrawidlowaOdpowiedz.vue';
 import ZlaOdpowiedz from './ZlaOdpowiedz.vue';
-import { useSceneStore } from '../stores/sceneStore';
+import { useScene2Store } from '../stores/scene2Store';
 import { useTimerStore } from '../stores/timerStore';
 import { useMainCompStore } from '../stores/mainCompStore';
 import { onMounted } from 'vue';
 
-const storeSceneMain = useSceneStore();
+const storeSceneMain = useScene2Store();
 const storeTime = useTimerStore();
 const storeMainComp =useMainCompStore()
 
 
 onMounted(() => {
     storeSceneMain.addQuestionLevel1()
+    storeTime.isPaused=false
     storeTime.startTimerValue()
    // storeTime.updateTimerDispay()
-    storeTime.startTimer()
+   // storeTime.startTimer()
 })
 
 //obsługa eventów podpiętych do buttonów
 function JeszczRaz(){
-    storeMainComp.ifMain1=false
+    storeMainComp.ifMain2=false
     storeMainComp.ifInstruction=true
 }
 
@@ -64,12 +65,12 @@ function PlayTimer(){
 <template>
     <div class="tlo">
         <button class="button-zagraj-jeszcze my-button" @click="JeszczRaz">Zagraj jeszcze raz</button>
-        <!-- <div class="kola-elementy">
-            <div class="elipsa elipsa-podpowiedz">
+        <div class="kola-elementy" v-if="storeSceneMain.ifButtonPodpowiedz">
+            <div class="elipsa elipsa-podpowiedz my-button">
                 <img src="../assets/podpowiedz.png" alt="wymien pytanie" width="103px" height="78px" />
             </div>
-        </div> -->
-        <div class="kola-elementy " v-if="storeSceneMain.ifWymien">
+        </div>
+        <div class="kola-elementy" v-if="storeSceneMain.ifWymien">
             <div class="elipsa elipsa-wymien my-button">
                 <img src="../assets/wymien.png" alt="wymien pytanie" width="60px" height="100px" />
             </div>
