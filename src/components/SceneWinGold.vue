@@ -102,5 +102,6 @@
     border-radius: 39px;
     background-color: #093343;
     color: white;
+    position: absolute;
 }
 </style>

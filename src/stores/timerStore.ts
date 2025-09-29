@@ -32,7 +32,7 @@ export const useTimerStore = defineStore("timerStore", () => {
   }
 
   function startTimer() {
-    timeScene1Local.value = 20;
+    timeScene1Local.value = 19;
     const interval = setInterval(() => {
       if (!isPaused.value) {
         if (timeScene1Local.value > 0) {

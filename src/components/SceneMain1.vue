@@ -4,10 +4,12 @@ import PrawidlowaOdpowiedz from './PrawidlowaOdpowiedz.vue';
 import ZlaOdpowiedz from './ZlaOdpowiedz.vue';
 import { useSceneStore } from '../stores/sceneStore';
 import { useTimerStore } from '../stores/timerStore';
+import { useMainCompStore } from '../stores/mainCompStore';
 import { onMounted } from 'vue';
 
 const storeSceneMain = useSceneStore();
 const storeTime = useTimerStore();
+const storeMainComp =useMainCompStore()
 
 
 onMounted(() => {
@@ -18,24 +20,33 @@ onMounted(() => {
 })
 
 //obsługa eventów podpiętych do buttonów
+function JeszczRaz(){
+    storeMainComp.ifMain1=false
+    storeMainComp.ifInstruction=true
+}
+
 async function odpowiedz1Click() {
     console.log('odp1')
     storeSceneMain.Odpowiedz1(1)
+    storeTime.isPaused=true
 }
 
 async function odpowiedz2Click() {
     console.log('odp2')
     storeSceneMain.Odpowiedz1(2)
+    storeTime.isPaused=true
 }
 
 async function odpowiedz3Click() {
     console.log('odp3')
     storeSceneMain.Odpowiedz1(3)
+    storeTime.isPaused=true
 }
 
 async function odpowiedz4Click() {
     console.log('odp4')
-    storeSceneMain.Odpowiedz1(3)
+    storeSceneMain.Odpowiedz1(4)
+    storeTime.isPaused=true
 }
 
 function PauseTimer(){
@@ -52,7 +63,7 @@ function PlayTimer(){
 
 <template>
     <div class="tlo">
-        <button class="button-zagraj-jeszcze my-button">Zagraj jeszcze raz</button>
+        <button class="button-zagraj-jeszcze my-button" @click="JeszczRaz">Zagraj jeszcze raz</button>
         <div class="kola-elementy">
             <div class="elipsa elipsa-podpowiedz">
                 <img src="../assets/podpowiedz.png" alt="wymien pytanie" width="103px" height="78px" />
@@ -96,7 +107,9 @@ function PlayTimer(){
         <div class="container-punktacja">
             <div class="ramka-punktacja" :style="{ top: storeSceneMain.ramkaPunktacjaWysokosc + 'px' }"></div>
             <div class="licznik-czasu">
-                {{ storeTime.formattedTime }}
+                <p class="licznik-display">
+                   {{ storeTime.formattedTime }}
+                </p>               
             </div>
             <button class="my-button button-pauza" @click="PauseTimer">Pauza</button>
             <button class="my-button button-kontynuj" @click="PlayTimer">Kontynuj</button>
@@ -358,6 +371,12 @@ function PlayTimer(){
     border-radius: 39px;
     top: 29px;
     left: 27px
+}
+
+.licznik-display{
+    position: absolute;
+    left: 45px;
+    top:-30px
 }
 
 .button-pauza {

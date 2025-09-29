@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { useMainCompStore } from '../stores/mainCompStore';
 
+const storeMainComp = useMainCompStore();
+
+function Graj(){
+    storeMainComp.ifInstruction=false;
+    storeMainComp.ifMain1=true
+}
 </script>
 
 <template>
@@ -57,7 +64,7 @@
                         trudnym, rozpoczynasz grę od pierwszego pytania na poziomie trudnym.</li>
                     <li>Kiedy ukończysz grę, możesz zagrać jeszcze raz.</li>
                 </ul>
-                <button class="button-start">Start</button>
+                <button class="button-start my-button" @click="Graj">Start</button>
 
             </div>
         </div>
@@ -217,6 +224,7 @@ li{
     font-style: bold;
     font-weight: 600;
     font-family: "Proxima Nova", sans-serif;
+    position:relative;
 }
 
 .button-start:focus{

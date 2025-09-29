@@ -4,10 +4,12 @@ import gameData from "../lib/pytania.json";
 import pointsPosition from "../lib/pozycjaRamki.json";
 import { metodyPomocnicze } from "../lib/metody-pomocnicze";
 import { useMainCompStore } from "../stores/mainCompStore";
+import { useTimerStore } from "./timerStore";
 
 export const useSceneStore = defineStore("storeScene1", () => {
-  //dostęp do store'a main Comp
+  //dostęp do store'ów
   const storeSceneMain = useMainCompStore();
+  const timerStore = useTimerStore();
 
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
@@ -107,6 +109,8 @@ export const useSceneStore = defineStore("storeScene1", () => {
         addQuestionLevel1();
         ifPrawidlowaOdpowiedz.value = false;
         ramkaPunktyMove();
+        timerStore.isPaused = false;
+        timerStore.timeScene1Local = 20;
         if (licznikPunktacja.value === 4) {
           storeSceneMain.ifMain1 = false;
           storeSceneMain.ifWinSilver = true;
