@@ -11,16 +11,17 @@ export const useScene2Store = defineStore("storeScene2", () => {
   const storeSceneMain = useMainCompStore();
   const timerStore = useTimerStore();
 
-  //wyswietlanie ikon podpowiedzi
-  const ifWymien = ref(true);
-  const ifFifty = ref(true);
-  const ifSeventy = ref(true);
-  const ifButtonPodpowiedz = ref(true);
-
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
   const ifPrawidlowaOdpowiedz = ref(false);
   const ifZlaOdpowiedz = ref(false);
+
+  //widocznosc odpowiedzi
+
+  const ifOdpowiedz1 = ref(true);
+  const ifOdpowiedz2 = ref(true);
+  const ifOdpowiedz3 = ref(true);
+  const ifOdpowiedz4 = ref(true);
 
   //położenie ramki punktacji
   const ramkaPunktacjaWysokosc = ref(pointsPosition.pozycjaRamki[5]);
@@ -35,6 +36,7 @@ export const useScene2Store = defineStore("storeScene2", () => {
   const odpowiedz2 = ref("odpowiedz2");
   const odpowiedz3 = ref("odpowiedz3");
   const odpowiedz4 = ref("odpowiedz4");
+  const podpowiedzTresc = ref("tresc podpowiedzi");
   const nrOdpowiedziDobrej = ref(0);
   const wybranaOdpowiedz = ref(0);
 
@@ -42,6 +44,11 @@ export const useScene2Store = defineStore("storeScene2", () => {
 
   //metoda dodajaca losowo pytania
   async function addQuestionLevel1() {
+    ifOdpowiedz1.value = true;
+    ifOdpowiedz2.value = true;
+    ifOdpowiedz3.value = true;
+    ifOdpowiedz4.value = true;
+    ifPodpowiedz.value = false;
     //const kolekcjaPytan = gameData.poziom1;
     let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki;
     let pytanieNr: number;
@@ -51,6 +58,7 @@ export const useScene2Store = defineStore("storeScene2", () => {
     await nextTick();
     nrKolejki++;
     pytanie.value = kolekcjaPytan.value[pytanieNr]?.pytanie ?? "";
+    podpowiedzTresc.value = kolekcjaPytan.value[pytanieNr]?.podpowiedz ?? "";
     odpowiedz1.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz1 ?? "";
     odpowiedz2.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz2 ?? "";
     odpowiedz3.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz3 ?? "";
@@ -136,16 +144,17 @@ export const useScene2Store = defineStore("storeScene2", () => {
     ifPodpowiedz,
     ifPrawidlowaOdpowiedz,
     ifZlaOdpowiedz,
-    ifWymien,
-    ifSeventy,
-    ifFifty,
-    ifButtonPodpowiedz,
     ramkaPunktacjaWysokosc,
     pytanie,
+    ifOdpowiedz1,
+    ifOdpowiedz2,
+    ifOdpowiedz3,
+    ifOdpowiedz4,
     odpowiedz1,
     odpowiedz2,
     odpowiedz3,
     odpowiedz4,
+    podpowiedzTresc,
     nrOdpowiedziDobrej,
     wybranaOdpowiedz,
     licznikPunktacja,

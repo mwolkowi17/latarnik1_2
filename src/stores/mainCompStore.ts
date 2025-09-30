@@ -4,6 +4,7 @@ import { ref } from "vue";
 export const useMainCompStore = defineStore("mainComp1", () => {
   //podstawowe sterowanie ekranami gry
 
+  const FirstPlayed = ref(true);
   const ifInstruction = ref(true);
   const ifMain1 = ref(false);
   const ifMain2 = ref(false);
@@ -13,6 +14,7 @@ export const useMainCompStore = defineStore("mainComp1", () => {
   const ifPrzegranaGold = ref(false);
 
   return {
+    FirstPlayed,
     ifInstruction,
     ifMain1,
     ifMain2,

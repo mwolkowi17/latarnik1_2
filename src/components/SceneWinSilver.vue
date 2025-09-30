@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useMainCompStore } from '../stores/mainCompStore';
+import { useTimerStore } from '../stores/timerStore';
 
   const storeMainComp = useMainCompStore();
+  const storeTime = useTimerStore();
 
   function GrajJeszczeRaz(){
     storeMainComp.ifWinSilver=false
     storeMainComp.ifMain1=true
+    storeTime.isPaused=false
   }
 
   function GrajDalej(){

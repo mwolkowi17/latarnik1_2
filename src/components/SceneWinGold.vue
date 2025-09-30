@@ -1,16 +1,29 @@
 <script setup lang="ts">
 import { useMainCompStore } from '../stores/mainCompStore';
+import { useKolaStore } from '../stores/storeKola';
+import { useTimerStore } from '../stores/timerStore';
 
   const storeMainComp = useMainCompStore();
+  const storeKola = useKolaStore()
+  const storeTime = useTimerStore();
 
   function ZagrajJeszcze(){
-    storeMainComp.ifPrzegranaGold=false
+    storeMainComp.ifWinGold=false
     storeMainComp.ifMain1=true
+     storeKola.ifWymien=true
+    storeKola.ifFifty=true
+    storeKola.ifSeventy=true
+    storeTime.isPaused=false
   }
 
   function ZakończGre(){
-    storeMainComp.ifPrzegranaGold=false
+    storeMainComp.ifWinGold=false
     storeMainComp.ifInstruction=true
+     storeKola.ifWymien=true
+    storeKola.ifFifty=true
+    storeKola.ifSeventy=true
+    storeTime.isPaused=false
+    
   }
 </script>
 

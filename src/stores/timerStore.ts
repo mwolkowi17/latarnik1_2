@@ -50,31 +50,6 @@ export const useTimerStore = defineStore("timerStore", () => {
     }, 1000);
   }
 
-  // function startTimer() {
-  //   timeScene1Local.value = 20;
-
-  //   const interval = setInterval(() => {
-  //     if (timeScene1Local.value > 0) {
-  //       const minutes = Math.floor(timeScene1Local.value / 60);
-  //       const seconds = timeScene1Local.value % 60;
-
-  //       formattedTime.value =
-  //         String(minutes).padStart(2, "0") +
-  //         ":" +
-  //         String(seconds).padStart(2, "0");
-
-  //       timeScene1Local.value--;
-  //     } else {
-  //       if (ifTimerOn.value === true) {
-  //         clearInterval(interval);
-  //         console.log("Time's up!");
-  //         storeSceneMain.ifMain1 = false;
-  //         storeSceneMain.ifPrzegranaSilver = true;
-  //       }
-  //     }
-  //   }, 1000);
-  // }
-
   return {
     ifTimerVisible,
     ifTimeFirstTime,

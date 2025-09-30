@@ -1,14 +1,31 @@
 <script setup lang="ts">
 //import { useSceneStore } from '../stores/sceneStore';
 import {useMainCompStore} from '../stores/mainCompStore'
+import { useKolaStore } from '../stores/storeKola';
+import { useTimerStore } from '../stores/timerStore';
+import { useSceneStore } from '../stores/sceneStore';
+import pointsPosition from "../lib/pozycjaRamki.json";
 
 
 //const storeSceneMain = useSceneStore();
 const storeMainComp = useMainCompStore();
+const storeKola = useKolaStore();
+const storeTime = useTimerStore();
+const storeScene = useSceneStore();
 
 function jeszczeRaz(){
     storeMainComp.ifPrzegranaSilver=false
     storeMainComp.ifMain1=true
+    storeKola.ifWymien=true
+    storeKola.ifFifty=true
+    storeKola.ifSeventy=true
+    storeTime.isPaused = false
+    //
+    storeMainComp.FirstPlayed=true
+    storeScene.licznikPunktacja=0
+    storeScene.ramkaPunktacjaWysokosc = pointsPosition.pozycjaRamki[0]
+    storeScene.nrKolejki=0
+    console.log(storeTime.isPaused)
 }
 
 </script>

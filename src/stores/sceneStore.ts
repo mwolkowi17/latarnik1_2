@@ -11,14 +11,17 @@ export const useSceneStore = defineStore("storeScene1", () => {
   const storeSceneMain = useMainCompStore();
   const timerStore = useTimerStore();
 
-  //wyswietlanie ikon podpowiedzi
-  const ifWymien = ref(true);
-  const ifFifty = ref(true);
-  const ifSeventy = ref(true);
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
   const ifPrawidlowaOdpowiedz = ref(false);
   const ifZlaOdpowiedz = ref(false);
+
+  //widocznosc odpowiedzi
+
+  const ifOdpowiedz1 = ref(true);
+  const ifOdpowiedz2 = ref(true);
+  const ifOdpowiedz3 = ref(true);
+  const ifOdpowiedz4 = ref(true);
 
   //położenie ramki punktacji
   const ramkaPunktacjaWysokosc = ref(pointsPosition.pozycjaRamki[0]);
@@ -36,18 +39,22 @@ export const useSceneStore = defineStore("storeScene1", () => {
   const nrOdpowiedziDobrej = ref(0);
   const wybranaOdpowiedz = ref(0);
 
-  let nrKolejki = 0;
+  const nrKolejki = ref(0);
 
   //metoda dodajaca losowo pytania
   async function addQuestionLevel1() {
+    ifOdpowiedz1.value = true;
+    ifOdpowiedz2.value = true;
+    ifOdpowiedz3.value = true;
+    ifOdpowiedz4.value = true;
     //const kolekcjaPytan = gameData.poziom1;
-    let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki;
+    let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki.value;
     let pytanieNr: number;
     pytanieNr = metodyPomocnicze.wybierzPytanie(iloscElementowKolekcjiPytan);
     console.log("wyswietlane pytanie:" + pytanieNr);
 
     await nextTick();
-    nrKolejki++;
+    nrKolejki.value++;
     pytanie.value = kolekcjaPytan.value[pytanieNr]?.pytanie ?? "";
     odpowiedz1.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz1 ?? "";
     odpowiedz2.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz2 ?? "";
@@ -67,7 +74,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
     await nextTick();
     console.log("oczekiwana odpowiedz:" + nrOdpowiedziDobrej.value);
 
-    if (nrKolejki === 5) {
+    if (nrKolejki.value === 5) {
       console.log("koniec etapu1");
     }
   }
@@ -134,11 +141,12 @@ export const useSceneStore = defineStore("storeScene1", () => {
     ifPodpowiedz,
     ifPrawidlowaOdpowiedz,
     ifZlaOdpowiedz,
-    ifWymien,
-    ifFifty,
-    ifSeventy,
     ramkaPunktacjaWysokosc,
     pytanie,
+    ifOdpowiedz1,
+    ifOdpowiedz2,
+    ifOdpowiedz3,
+    ifOdpowiedz4,
     odpowiedz1,
     odpowiedz2,
     odpowiedz3,
@@ -146,6 +154,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
     nrOdpowiedziDobrej,
     wybranaOdpowiedz,
     licznikPunktacja,
+    nrKolejki,
     addQuestionLevel1,
     sprawdzOdpowiedz,
     ramkaPunktyMove,

@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useScene2Store } from '../stores/scene2Store';
+
+const storeSceneMain = useScene2Store();
 
 </script>
 
 <template>
-<div class="container-podpowiedz">Co otrzymał w paczce z Nowego Jorku?</div>
+<div class="container-podpowiedz">{{storeSceneMain.podpowiedzTresc}}</div>
 </template>
 
 <style scoped>

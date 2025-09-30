@@ -5,11 +5,13 @@ import ZlaOdpowiedz from './ZlaOdpowiedz.vue';
 import { useScene2Store } from '../stores/scene2Store';
 import { useTimerStore } from '../stores/timerStore';
 import { useMainCompStore } from '../stores/mainCompStore';
+import { useKola2Store } from '../stores/store2Kola';
 import { onMounted } from 'vue';
 
 const storeSceneMain = useScene2Store();
 const storeTime = useTimerStore();
 const storeMainComp =useMainCompStore()
+const storeKola=useKola2Store()
 
 
 onMounted(() => {
@@ -50,6 +52,25 @@ async function odpowiedz4Click() {
     storeTime.isPaused=true
 }
 
+
+function KoloWymien(){
+    storeKola.WymienPytanie()
+}
+
+function KoloSeventy(){
+    storeKola.UsunJedna()
+}
+
+function KoloFifty(){
+    storeKola.UsunDwie()
+}
+
+function KoloPodpowiedz(){
+    storeKola.PokazPodpowiedz()
+}
+
+
+
 function PauseTimer(){
     storeTime.isPaused=true
 }
@@ -65,22 +86,22 @@ function PlayTimer(){
 <template>
     <div class="tlo">
         <button class="button-zagraj-jeszcze my-button" @click="JeszczRaz">Zagraj jeszcze raz</button>
-        <div class="kola-elementy" v-if="storeSceneMain.ifButtonPodpowiedz">
-            <div class="elipsa elipsa-podpowiedz my-button">
+        <div class="kola-elementy" v-if="storeKola.ifButtonPodpowiedz">
+            <div class="elipsa elipsa-podpowiedz my-button" @click="KoloPodpowiedz">
                 <img src="../assets/podpowiedz.png" alt="wymien pytanie" width="103px" height="78px" />
             </div>
         </div>
-        <div class="kola-elementy" v-if="storeSceneMain.ifWymien">
-            <div class="elipsa elipsa-wymien my-button">
+        <div class="kola-elementy" v-if="storeKola.ifWymien">
+            <div class="elipsa elipsa-wymien my-button" @click="KoloWymien">
                 <img src="../assets/wymien.png" alt="wymien pytanie" width="60px" height="100px" />
             </div>
         </div>
-        <div class="kola-elementy" v-if="storeSceneMain.ifSeventy">
-            <div class="elipsa elipsa-seven my-button">
+        <div class="kola-elementy" v-if="storeKola.ifSeventy">
+            <div class="elipsa elipsa-seven my-button" @click="KoloSeventy">
                 75:100
             </div>
         </div>
-        <div class="kola-elementy" v-if="storeSceneMain.ifFifty">
+        <div class="kola-elementy" v-if="storeKola.ifFifty" @click="KoloFifty">
             <div class="elipsa elipsa-fifty my-button">
                 50:50
             </div>
@@ -92,16 +113,16 @@ function PlayTimer(){
         <ZlaOdpowiedz class="component-zla-odpowiedz" v-if="storeSceneMain.ifZlaOdpowiedz" />
 
         <div class="container-pytanie">{{ storeSceneMain.pytanie }}</div>
-        <button class="button-odpowiedz buttonA my-button" @click="odpowiedz1Click">
+        <button class="button-odpowiedz buttonA my-button" v-if="storeSceneMain.ifOdpowiedz1" @click="odpowiedz1Click">
             {{ storeSceneMain?.odpowiedz1 }}
         </button>
-        <button class="button-odpowiedz buttonB my-button" @click="odpowiedz2Click">
+        <button class="button-odpowiedz buttonB my-button" v-if="storeSceneMain.ifOdpowiedz2" @click="odpowiedz2Click">
             {{ storeSceneMain.odpowiedz2 }}
         </button>
-        <button class="button-odpowiedz buttonC my-button" @click="odpowiedz3Click">
+        <button class="button-odpowiedz buttonC my-button" v-if="storeSceneMain.ifOdpowiedz3" @click="odpowiedz3Click">
             {{ storeSceneMain.odpowiedz3 }}
         </button>
-        <button class="button-odpowiedz buttonD my-button" @click="odpowiedz4Click">
+        <button class="button-odpowiedz buttonD my-button" v-if="storeSceneMain.ifOdpowiedz4" @click="odpowiedz4Click">
             {{ storeSceneMain.odpowiedz4 }}
         </button>
 
