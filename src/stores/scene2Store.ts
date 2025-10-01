@@ -128,7 +128,7 @@ export const useScene2Store = defineStore("storeScene2", () => {
         ramkaPunktyMove();
         timerStore.isPaused = false;
         timerStore.timeScene1Local = 20;
-        if (licznikPunktacja.value === 9) {
+        if (licznikPunktacja.value === 10) {
           timerStore.isPaused = true;
           storeSceneMain.ifMain2 = false;
           storeSceneMain.ifWinGold = true;

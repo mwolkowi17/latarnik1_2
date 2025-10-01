@@ -125,7 +125,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
         ramkaPunktyMove();
         timerStore.isPaused = false;
         timerStore.timeScene1Local = 20;
-        if (licznikPunktacja.value === 4) {
+        if (licznikPunktacja.value === 5) {
           timerStore.isPaused = true;
           storeSceneMain.ifMain1 = false;
           storeSceneMain.ifWinSilver = true;
