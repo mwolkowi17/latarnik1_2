@@ -12,20 +12,29 @@ export const useKola2Store = defineStore("kola_store2", () => {
   const ifSeventy = ref(true);
   const ifButtonPodpowiedz = ref(true);
 
-  function PokazPodpowiedz() {
+  //flaga wskazujaca na uzycie koła w kolejce pytań gracza
+  const ifSkorzystałZKola = ref(false);
+
+  async function PokazPodpowiedz() {
+    ifSkorzystałZKola.value = true;
+    await nextTick();
     storeSceneMain.ifPodpowiedz = true;
     ifButtonPodpowiedz.value = false;
   }
 
-  function WymienPytanie() {
+  async function WymienPytanie() {
+    ifSkorzystałZKola.value = true;
+    await nextTick();
     storeSceneMain.addQuestionLevel1();
     ifWymien.value = false;
   }
 
-  function UsunJedna() {
+  async function UsunJedna() {
+    ifSkorzystałZKola.value = true;
+    await nextTick();
     console.log("usuwam jedą odpwowiedź");
     ifSeventy.value = false;
-    ifFifty.value = false;
+
     if (
       metodyPomocnicze.sprawdzOdpowiedz(1, storeSceneMain.nrOdpowiedziDobrej) !=
       true
@@ -47,9 +56,11 @@ export const useKola2Store = defineStore("kola_store2", () => {
   }
 
   async function UsunDwie() {
+    ifSkorzystałZKola.value = true;
+    await nextTick();
     let jendaJuzJest = 0;
     console.log("usuwam dwie");
-    ifSeventy.value = false;
+
     ifFifty.value = false;
     if (
       metodyPomocnicze.sprawdzOdpowiedz(1, storeSceneMain.nrOdpowiedziDobrej) !=
@@ -93,14 +104,24 @@ export const useKola2Store = defineStore("kola_store2", () => {
     }
   }
 
+  function ResetKolRatunkowych() {
+    ifWymien.value = true;
+    ifFifty.value = true;
+    ifSeventy.value = true;
+    ifButtonPodpowiedz.value = true;
+    ifSkorzystałZKola.value = false;
+  }
+
   return {
     ifWymien,
     ifFifty,
     ifSeventy,
     ifButtonPodpowiedz,
+    ifSkorzystałZKola,
     PokazPodpowiedz,
     WymienPytanie,
     UsunJedna,
     UsunDwie,
+    ResetKolRatunkowych,
   };
 });

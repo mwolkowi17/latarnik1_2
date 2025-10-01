@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import {useMainCompStore} from '../stores/mainCompStore'
-import { useKolaStore } from '../stores/storeKola';
-import { useTimerStore } from '../stores/timerStore';
+// import { useKolaStore } from '../stores/storeKola';
+// import { useTimerStore } from '../stores/timerStore';
 
 const storeMainComp = useMainCompStore();
-const storeKola = useKolaStore()
-const storeTime = useTimerStore();
+// const storeKola = useKolaStore()
+// const storeTime = useTimerStore();
 
 function jeszczeRaz(){
-    storeMainComp.ifPrzegranaSilver=false
+    storeMainComp.ifPrzegranaGold=false
     storeMainComp.ifMain2=true
-     storeKola.ifWymien=true
-    storeKola.ifFifty=true
-    storeKola.ifSeventy=true
-    storeTime.isPaused = false
+    //  storeKola.ifWymien=true
+    // storeKola.ifFifty=true
+    // storeKola.ifSeventy=true
+    // storeTime.isPaused = false
     
 }
 </script>

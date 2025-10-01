@@ -6,7 +6,7 @@ import { useSceneStore } from '../stores/sceneStore';
 import { useTimerStore } from '../stores/timerStore';
 import { useMainCompStore } from '../stores/mainCompStore';
 import { useKolaStore } from '../stores/storeKola';
-import { onMounted } from 'vue';
+import { onMounted,onUnmounted } from 'vue';
 
 const storeSceneMain = useSceneStore();
 const storeTime = useTimerStore();
@@ -17,10 +17,14 @@ const storeKola=useKolaStore()
 onMounted(() => {
     storeSceneMain.addQuestionLevel1()
     storeTime.startTimerValue()
-   // storeTime.updateTimerDispay()
-   if(storeMainComp.FirstPlayed){
     storeTime.startTimer()
-    storeMainComp.FirstPlayed=false}
+})
+
+onUnmounted(()=>{
+    clearInterval(storeTime.timerInterval)
+    storeTime.isPaused = false
+    storeSceneMain.ResetScene()
+    storeKola.ResetKolRatunkowych()
 })
 
 //obsługa eventów podpiętych do buttonów
@@ -54,15 +58,21 @@ function odpowiedz4Click() {
 }
 
 function KoloWymien(){
+    if(!storeKola.ifSkorzystałZKola){
     storeKola.WymienPytanie()
+    }
 }
 
 function KoloSeventy(){
+    if(!storeKola.ifSkorzystałZKola){
     storeKola.UsunJedna()
+    }
 }
 
 function KoloFifty(){
+    if(!storeKola.ifSkorzystałZKola){
     storeKola.UsunDwie()
+    }
 }
 
 

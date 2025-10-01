@@ -4,12 +4,14 @@ import gameData from "../lib/pytania.json";
 import pointsPosition from "../lib/pozycjaRamki.json";
 import { metodyPomocnicze } from "../lib/metody-pomocnicze";
 import { useMainCompStore } from "../stores/mainCompStore";
-import { useTimerStore } from "./timerStore";
+import { useTimer2Store } from "./timer2Store";
+import { useKola2Store } from "./store2Kola";
 
 export const useScene2Store = defineStore("storeScene2", () => {
   //dostęp do store'ów
   const storeSceneMain = useMainCompStore();
-  const timerStore = useTimerStore();
+  const timerStore = useTimer2Store();
+  const storeKola = useKola2Store();
 
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
@@ -40,7 +42,7 @@ export const useScene2Store = defineStore("storeScene2", () => {
   const nrOdpowiedziDobrej = ref(0);
   const wybranaOdpowiedz = ref(0);
 
-  let nrKolejki = 0;
+  const nrKolejki = ref(0);
 
   //metoda dodajaca losowo pytania
   async function addQuestionLevel1() {
@@ -50,13 +52,13 @@ export const useScene2Store = defineStore("storeScene2", () => {
     ifOdpowiedz4.value = true;
     ifPodpowiedz.value = false;
     //const kolekcjaPytan = gameData.poziom1;
-    let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki;
+    let iloscElementowKolekcjiPytan = gameData.poziom1.length - nrKolejki.value;
     let pytanieNr: number;
     pytanieNr = metodyPomocnicze.wybierzPytanie(iloscElementowKolekcjiPytan);
     console.log("wyswietlane pytanie:" + pytanieNr);
 
     await nextTick();
-    nrKolejki++;
+    nrKolejki.value++;
     pytanie.value = kolekcjaPytan.value[pytanieNr]?.pytanie ?? "";
     podpowiedzTresc.value = kolekcjaPytan.value[pytanieNr]?.podpowiedz ?? "";
     odpowiedz1.value = kolekcjaPytan.value[pytanieNr]?.odpowiedz1 ?? "";
@@ -77,13 +79,14 @@ export const useScene2Store = defineStore("storeScene2", () => {
     await nextTick();
     console.log("oczekiwana odpowiedz:" + nrOdpowiedziDobrej.value);
 
-    if (nrKolejki === 5) {
+    if (nrKolejki.value === 5) {
       console.log("koniec etapu2");
     }
   }
 
   //sprawdzanie odpoiwedzi
   function sprawdzOdpowiedz(nrWybranegoPytania: number) {
+    storeKola.ifSkorzystałZKola = false;
     console.log("wybrana odpowiedz:" + nrWybranegoPytania);
     if (
       metodyPomocnicze.sprawdzOdpowiedz(
@@ -140,6 +143,14 @@ export const useScene2Store = defineStore("storeScene2", () => {
     }
   }
 
+  function ResetScene() {
+    licznikPunktacja.value = 5;
+    ramkaPunktacjaWysokosc.value = pointsPosition.pozycjaRamki[5];
+    nrKolejki.value = 0;
+    kolekcjaPytan.value = gameData.poziom2;
+    console.log(kolekcjaPytan.value);
+  }
+
   return {
     ifPodpowiedz,
     ifPrawidlowaOdpowiedz,
@@ -158,9 +169,11 @@ export const useScene2Store = defineStore("storeScene2", () => {
     nrOdpowiedziDobrej,
     wybranaOdpowiedz,
     licznikPunktacja,
+    nrKolejki,
     addQuestionLevel1,
     sprawdzOdpowiedz,
     ramkaPunktyMove,
     Odpowiedz1,
+    ResetScene,
   };
 });

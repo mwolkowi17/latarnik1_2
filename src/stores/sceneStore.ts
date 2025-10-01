@@ -5,11 +5,13 @@ import pointsPosition from "../lib/pozycjaRamki.json";
 import { metodyPomocnicze } from "../lib/metody-pomocnicze";
 import { useMainCompStore } from "../stores/mainCompStore";
 import { useTimerStore } from "./timerStore";
+import { useKolaStore } from "./storeKola";
 
 export const useSceneStore = defineStore("storeScene1", () => {
   //dostęp do store'ów
   const storeSceneMain = useMainCompStore();
   const timerStore = useTimerStore();
+  const storeKola = useKolaStore();
 
   //sterowanie komponentami głównej sceny
   const ifPodpowiedz = ref(false);
@@ -81,6 +83,7 @@ export const useSceneStore = defineStore("storeScene1", () => {
 
   //sprawdzanie odpoiwedzi
   function sprawdzOdpowiedz(nrWybranegoPytania: number) {
+    storeKola.ifSkorzystałZKola = false;
     console.log("wybrana odpowiedz:" + nrWybranegoPytania);
     if (
       metodyPomocnicze.sprawdzOdpowiedz(
@@ -137,6 +140,16 @@ export const useSceneStore = defineStore("storeScene1", () => {
     }
   }
 
+  async function ResetScene() {
+    await nextTick();
+    licznikPunktacja.value = 0;
+    ramkaPunktacjaWysokosc.value = pointsPosition.pozycjaRamki[0];
+    nrKolejki.value = 0;
+    await nextTick();
+    kolekcjaPytan.value = gameData.poziom1;
+    console.log(kolekcjaPytan.value);
+  }
+
   return {
     ifPodpowiedz,
     ifPrawidlowaOdpowiedz,
@@ -159,5 +172,6 @@ export const useSceneStore = defineStore("storeScene1", () => {
     sprawdzOdpowiedz,
     ramkaPunktyMove,
     Odpowiedz1,
+    ResetScene,
   };
 });

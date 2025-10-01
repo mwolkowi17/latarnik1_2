@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useMainCompStore } from "./mainCompStore";
 
-export const useTimerStore = defineStore("timerStore", () => {
+export const useTimer2Store = defineStore("timer2Store", () => {
   const storeSceneMain = useMainCompStore();
 
   // const ifTimerVisible = ref(true);
@@ -46,8 +46,8 @@ export const useTimerStore = defineStore("timerStore", () => {
           if (ifTimerOn.value === true) {
             clearInterval(timerInterval.value);
             console.log("Time's up!");
-            storeSceneMain.ifMain1 = false;
-            storeSceneMain.ifPrzegranaSilver = true;
+            storeSceneMain.ifMain2 = false;
+            storeSceneMain.ifPrzegranaGold = true;
             timerEnd.value = true;
           }
         }

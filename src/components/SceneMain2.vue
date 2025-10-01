@@ -3,80 +3,97 @@ import Podpowiedz from './Podpowiedz.vue';
 import PrawidlowaOdpowiedz from './PrawidlowaOdpowiedz.vue';
 import ZlaOdpowiedz from './ZlaOdpowiedz.vue';
 import { useScene2Store } from '../stores/scene2Store';
-import { useTimerStore } from '../stores/timerStore';
+import { useTimer2Store } from '../stores/timer2Store';
 import { useMainCompStore } from '../stores/mainCompStore';
 import { useKola2Store } from '../stores/store2Kola';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 const storeSceneMain = useScene2Store();
-const storeTime = useTimerStore();
-const storeMainComp =useMainCompStore()
-const storeKola=useKola2Store()
+const storeTime = useTimer2Store();
+const storeMainComp = useMainCompStore()
+const storeKola = useKola2Store()
 
 
 onMounted(() => {
     storeSceneMain.addQuestionLevel1()
-    storeTime.isPaused=false
+    storeTime.isPaused = false
     storeTime.startTimerValue()
-   // storeTime.updateTimerDispay()
-   // storeTime.startTimer()
+    // storeTime.updateTimerDispay()
+    storeTime.startTimer()
 })
 
+onUnmounted(() => {
+    clearInterval(storeTime.timerInterval)
+    storeTime.isPaused = false
+    storeSceneMain.ResetScene()
+    storeKola.ResetKolRatunkowych()
+})
+
+
+
 //obsługa eventów podpiętych do buttonów
-function JeszczRaz(){
-    storeMainComp.ifMain2=false
-    storeMainComp.ifInstruction=true
+function JeszczRaz() {
+    storeMainComp.ifMain2 = false
+    storeMainComp.ifInstruction = true
 }
 
 async function odpowiedz1Click() {
     console.log('odp1')
     storeSceneMain.Odpowiedz1(1)
-    storeTime.isPaused=true
+    storeTime.isPaused = true
 }
 
 async function odpowiedz2Click() {
     console.log('odp2')
     storeSceneMain.Odpowiedz1(2)
-    storeTime.isPaused=true
+    storeTime.isPaused = true
 }
 
 async function odpowiedz3Click() {
     console.log('odp3')
     storeSceneMain.Odpowiedz1(3)
-    storeTime.isPaused=true
+    storeTime.isPaused = true
 }
 
 async function odpowiedz4Click() {
     console.log('odp4')
     storeSceneMain.Odpowiedz1(4)
-    storeTime.isPaused=true
+    storeTime.isPaused = true
 }
 
 
-function KoloWymien(){
+function KoloWymien() {
+     if(!storeKola.ifSkorzystałZKola){
     storeKola.WymienPytanie()
+     }
 }
 
-function KoloSeventy(){
+function KoloSeventy() {
+     if(!storeKola.ifSkorzystałZKola){
     storeKola.UsunJedna()
+     }
 }
 
-function KoloFifty(){
+function KoloFifty() {
+     if(!storeKola.ifSkorzystałZKola){
     storeKola.UsunDwie()
+     }
 }
 
-function KoloPodpowiedz(){
+function KoloPodpowiedz() {
+     if(!storeKola.ifSkorzystałZKola){
     storeKola.PokazPodpowiedz()
+     }
 }
 
 
 
-function PauseTimer(){
-    storeTime.isPaused=true
+function PauseTimer() {
+    storeTime.isPaused = true
 }
 
-function PlayTimer(){
-    storeTime.isPaused=false
+function PlayTimer() {
+    storeTime.isPaused = false
 }
 
 
@@ -130,8 +147,8 @@ function PlayTimer(){
             <div class="ramka-punktacja" :style="{ top: storeSceneMain.ramkaPunktacjaWysokosc + 'px' }"></div>
             <div class="licznik-czasu">
                 <p class="licznik-display">
-                   {{ storeTime.formattedTime }}
-                </p>               
+                    {{ storeTime.formattedTime }}
+                </p>
             </div>
             <button class="my-button button-pauza" @click="PauseTimer">Pauza</button>
             <button class="my-button button-kontynuj" @click="PlayTimer">Kontynuj</button>
@@ -395,10 +412,10 @@ function PlayTimer(){
     left: 27px
 }
 
-.licznik-display{
+.licznik-display {
     position: absolute;
     left: 45px;
-    top:-30px
+    top: -30px
 }
 
 .button-pauza {
